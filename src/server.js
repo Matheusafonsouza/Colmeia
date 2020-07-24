@@ -10,7 +10,7 @@ async function firstMovie() {
   console.log(result.get('title'));
 }
 
-async function lifeSpan() {
+async function lifesSpan() {
   const query = new app.Query('Specie');
 
   query.exists('averageLifespan');
@@ -20,6 +20,36 @@ async function lifeSpan() {
   const results = await query.find();
 
   console.log(results);
+}
+
+async function genderCounter() {
+  const results = [];
+
+  const query = new app.Query('Character');
+
+  query.exists('gender');
+
+  query.equalTo('gender', 'male');
+  results.push(await query.count());
+
+  query.equalTo('gender', 'female');
+  results.push(await query.count());
+
+  console.log(results);
+}
+
+async function averageHeight() {
+  let heightSum = 0;
+  const query = new app.Query('Character');
+
+  query.exists('height');
+  const characters = await query.find();
+
+  characters.map((character) => {
+    heightSum += character.get('height');
+  });
+
+  console.log(heightSum / characters.length);
 }
 
 firstMovie();
