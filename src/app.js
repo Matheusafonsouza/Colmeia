@@ -1,15 +1,16 @@
-const express = require('express');
+const Parse = require('parse/node');
 
 class App {
   constructor() {
-    this.server = express();
+    Parse.initialize(
+      'Jl21MbJjOzHoq3eNjK0dY1cuRyQnOeu1GNIGQpY3',
+      'Aqy19HFsorwxIhCC3E9IYBQh8WBnkdoMGOdEaYPe'
+    );
 
-    this.middlewares();
-  }
+    Parse.serverURL = 'https://parseapi.back4app.com/';
 
-  middlewares() {
-    this.server.use(express.json());
+    this.server = Parse;
   }
 }
 
-export default new App().server;
+module.exports = new App().server;
