@@ -52,4 +52,29 @@ async function averageHeight() {
   console.log(heightSum / characters.length);
 }
 
-firstMovie();
+async function characterLanguage() {
+  const innerQuery = new app.Query('Specie');
+  innerQuery.equalTo('language', 'Gungan basic');
+
+  const query = new app.Query('Character');
+  query.matchesQuery('species', innerQuery);
+
+  const characters = await query.find();
+
+  console.log(characters);
+}
+
+async function mostPopularPlanet() {
+  const query = new app.Query('Character');
+  const innerQuery = new app.Query('Planet');
+
+  innerQuery.descending('population');
+  const planet = await innerQuery.first();
+
+  query.equalTo('homeworld', planet);
+  const characters = await query.find();
+
+  console.log(characters);
+}
+
+mostPopularPlanet();
