@@ -1,89 +1,36 @@
+const { Parser } = require('json2csv');
+const fs = require('fs');
 const app = require('./app');
 
-async function firstMovie() {
-  const query = new app.Query('Film');
+async function abc() {
+  const data1 = await app.firstMovie();
+  const data4 = await app.averageHeight();
+  const data5 = await app.characterLanguage();
+  const data3 = await app.genderCounter();
+  const data6 = await app.mostPopularPlanet();
+  const data2 = await app.lifeSpan();
 
-  query.ascending('releaseDate');
+  const data = {
+    Pergunta1: data1,
+    Pergunta2: data2.join(','),
+    Pergunta3: data3,
+    Pergunta4: data4,
+    Pergunta5: data5.join(','),
+    Pergunta6: data6.join(','),
+  };
 
-  const result = await query.first();
+  try {
+    const parser = new Parser();
+    const csv = parser.parse(data);
 
-  console.log(result.get('title'));
+    fs.writeFile('test.csv', csv, (err) => {
+      if (err) return console.log(err);
+
+      console.log('csv created!');
+    });
+  } catch (err) {
+    console.error(err);
+  }
 }
 
-async function lifeSpan() {
-  const query = new app.Query('Specie');
-
-  query.exists('averageLifespan');
-  query.notEqualTo('averageLifespan', null);
-  query.ascending('averageLifespan');
-  query.limit(3);
-
-  const results = await query.find();
-
-  results.map((specie) => {
-    console.log(specie.get('name'));
-  });
-}
-
-async function genderCounter() {
-  const results = [];
-
-  const query = new app.Query('Character');
-
-  query.exists('gender');
-
-  query.equalTo('gender', 'male');
-  results.push(await query.count());
-
-  query.equalTo('gender', 'female');
-  results.push(await query.count());
-
-  console.log(results);
-}
-
-async function averageHeight() {
-  let heightSum = 0;
-  const query = new app.Query('Character');
-
-  query.exists('height');
-  const characters = await query.find();
-
-  characters.map((character) => {
-    heightSum += character.get('height');
-  });
-
-  const answer = heightSum / characters.length / 100;
-
-  console.log(answer.toFixed(2));
-}
-
-async function characterLanguage() {
-  const innerQuery = new app.Query('Specie');
-  innerQuery.equalTo('language', 'Gungan basic');
-
-  const query = new app.Query('Character');
-  query.matchesQuery('species', innerQuery);
-
-  const characters = await query.find();
-
-  characters.map((character) => {
-    console.log(character.get('name'));
-  });
-}
-
-async function mostPopularPlanet() {
-  const query = new app.Query('Character');
-  const innerQuery = new app.Query('Planet');
-
-  innerQuery.descending('population');
-  const planet = await innerQuery.first();
-
-  query.equalTo('homeworld', planet);
-  const characters = await query.find();
-
-  characters.map((character) => {
-    console.log(character.get('name'));
-  });
-}
-
-mostPopularPlanet();
+abc();
