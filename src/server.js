@@ -10,16 +10,19 @@ async function firstMovie() {
   console.log(result.get('title'));
 }
 
-async function lifesSpan() {
+async function lifeSpan() {
   const query = new app.Query('Specie');
 
   query.exists('averageLifespan');
+  query.notEqualTo('averageLifespan', null);
   query.ascending('averageLifespan');
   query.limit(3);
 
   const results = await query.find();
 
-  console.log(results);
+  results.map((specie) => {
+    console.log(specie.get('name'));
+  });
 }
 
 async function genderCounter() {
@@ -49,7 +52,9 @@ async function averageHeight() {
     heightSum += character.get('height');
   });
 
-  console.log(heightSum / characters.length);
+  const answer = heightSum / characters.length / 100;
+
+  console.log(answer.toFixed(2));
 }
 
 async function characterLanguage() {
@@ -61,7 +66,9 @@ async function characterLanguage() {
 
   const characters = await query.find();
 
-  console.log(characters);
+  characters.map((character) => {
+    console.log(character.get('name'));
+  });
 }
 
 async function mostPopularPlanet() {
@@ -74,7 +81,9 @@ async function mostPopularPlanet() {
   query.equalTo('homeworld', planet);
   const characters = await query.find();
 
-  console.log(characters);
+  characters.map((character) => {
+    console.log(character.get('name'));
+  });
 }
 
 mostPopularPlanet();
