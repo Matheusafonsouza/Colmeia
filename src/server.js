@@ -16,11 +16,11 @@ async function run() {
   // create object to generate csv
   const data = {
     question1: title,
-    question2: life.join(','),
+    question2: life,
     question3: gender,
     question4: height,
-    question5: language.join(','),
-    question6: planet.join(','),
+    question5: language,
+    question6: planet,
   };
 
   // generate csv and save it

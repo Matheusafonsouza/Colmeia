@@ -41,7 +41,7 @@ class App {
       result.push(specie.get('name'));
     });
 
-    return result;
+    return result.join(',');
   }
 
   // returns the number of characters for each sex
@@ -75,7 +75,7 @@ class App {
 
     const answer = heightSum / characters.length / 100;
 
-    return answer.toFixed(2);
+    return Number(answer.toFixed(2));
   }
 
   // returns the characters who speak gungan basic
@@ -94,13 +94,11 @@ class App {
       result.push(character.get('name'));
     });
 
-    return result;
+    return result.join(',');
   }
 
   // returns the residents of the most populous planet
   async mostPopularPlanet() {
-    const result = [];
-
     const query = new this.server.Query('Character');
     const innerQuery = new this.server.Query('Planet');
 
@@ -108,13 +106,9 @@ class App {
     const planet = await innerQuery.first();
 
     query.equalTo('homeworld', planet);
-    const characters = await query.find();
+    const characters = await query.count();
 
-    characters.forEach((character) => {
-      result.push(character.get('name'));
-    });
-
-    return result;
+    return Number(characters);
   }
 }
 
