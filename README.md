@@ -16,8 +16,9 @@
 
 * [Sobre o projeto](#Sobre-o-projeto)
   * [Tecnologias](#Tecnologias)
-  * [Tecnologias para desenvolvimento](#Tecnologias)
+  * [Tecnologias para desenvolvimento](#Tecnologias-para-desenvolvimento)
   * [Ferramentas](#Ferramentas)
+* [Para executar o projeto](#Para-executar-o-projeto)
 * [Contribuição](#Contribuição)
 
 ## Sobre o projeto
@@ -38,8 +39,15 @@ Esse projeto foi desenvolvido com as seguintes dependências unicamente para o d
 - [Nodemon](https://nodemon.io/)
 
 ## Ferramentas
-
+Esse projeto foi desenvolvido utilizando as seguintes ferramentas:
 - [Visual Studio Code](https://code.visualstudio.com)
+
+## Para executar o projeto:
+
+- Clone esse repositório;
+- Execute o comando yarn install (ou npm install caso não tenha o yarn em sua máquina) na pasta raiz do projeto para instalação dos pacotes necessários;
+- Execute o comando ```yarn start (ou npm start)``` para assim, executar o projeto e gerar o arquivo ```answers.csv```, o qual estará localizado na raiz do projeto.
+- Para executar os testes unitários, utilize o comando ```yarn test (ou npm test)```.
 
 ## Contribuição
 
