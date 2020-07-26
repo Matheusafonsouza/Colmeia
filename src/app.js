@@ -1,5 +1,7 @@
+// imports
 const Parse = require('parse/node');
 
+// class
 class App {
   constructor() {
     Parse.initialize(
@@ -12,6 +14,7 @@ class App {
     this.server = Parse;
   }
 
+  // returns the first Star Wars movie
   async firstMovie() {
     const query = new this.server.Query('Film');
 
@@ -22,6 +25,7 @@ class App {
     return result.get('title');
   }
 
+  // returns the 3 species with the shortest lifespan
   async lifeSpan() {
     const result = [];
     const query = new this.server.Query('Specie');
@@ -40,6 +44,7 @@ class App {
     return result;
   }
 
+  // returns the number of characters for each sex
   async genderCounter() {
     const results = [];
 
@@ -56,6 +61,7 @@ class App {
     return `M:${results[0]},F:${results[1]}`;
   }
 
+  // returns the characters average height
   async averageHeight() {
     let heightSum = 0;
     const query = new this.server.Query('Character');
@@ -72,6 +78,7 @@ class App {
     return answer.toFixed(2);
   }
 
+  // returns the characters who speak gungan basic
   async characterLanguage() {
     const result = [];
 
@@ -90,6 +97,7 @@ class App {
     return result;
   }
 
+  // returns the residents of the most populous planet
   async mostPopularPlanet() {
     const result = [];
 

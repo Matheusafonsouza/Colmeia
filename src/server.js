@@ -1,8 +1,11 @@
+// imports
 const { Parser } = require('json2csv');
 const fs = require('fs');
 const app = require('./app');
 
+// run function
 async function run() {
+  // questions answers
   const title = await app.firstMovie();
   const height = await app.averageHeight();
   const language = await app.characterLanguage();
@@ -10,6 +13,7 @@ async function run() {
   const planet = await app.mostPopularPlanet();
   const life = await app.lifeSpan();
 
+  // create object to generate csv
   const data = {
     question1: title,
     question2: life.join(','),
@@ -19,11 +23,12 @@ async function run() {
     question6: planet.join(','),
   };
 
+  // generate csv and save it
   try {
     const parser = new Parser({ delimiter: ';' });
     const csv = parser.parse(data);
 
-    fs.writeFile('test.csv', csv, (err) => {
+    fs.writeFile('answers.csv', csv, (err) => {
       if (err) {
         return console.log(err);
       }
