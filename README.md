@@ -1,6 +1,6 @@
 <br />
 <p align="center">
-    <img src="https://github.com/Matheusafonsouza/Ecoleta/blob/master/assets/colmeia.png?raw=true" alt="Logo" width="80" height="80">
+    <img src="https://github.com/Matheusafonsouza/Colmeia/blob/master/assets/colmeia.png?raw=true" alt="Logo" width="80" height="80">
 
 
   <h3 align="center">Colmeia</h3>
