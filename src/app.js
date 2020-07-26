@@ -33,7 +33,7 @@ class App {
 
     const species = await query.find();
 
-    species.map((specie) => {
+    species.forEach((specie) => {
       result.push(specie.get('name'));
     });
 
@@ -63,7 +63,7 @@ class App {
     query.exists('height');
     const characters = await query.find();
 
-    characters.map((character) => {
+    characters.forEach((character) => {
       heightSum += character.get('height');
     });
 
@@ -83,7 +83,7 @@ class App {
 
     const characters = await query.find();
 
-    characters.map((character) => {
+    characters.forEach((character) => {
       result.push(character.get('name'));
     });
 
@@ -102,7 +102,7 @@ class App {
     query.equalTo('homeworld', planet);
     const characters = await query.find();
 
-    characters.map((character) => {
+    characters.forEach((character) => {
       result.push(character.get('name'));
     });
 
