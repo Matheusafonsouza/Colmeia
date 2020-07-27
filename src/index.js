@@ -15,12 +15,12 @@ async function run() {
 
   // create object to generate csv
   const data = {
-    question1: title,
-    question2: life,
-    question3: gender,
-    question4: height,
-    question5: language,
-    question6: planet,
+    'Pergunta 1': title,
+    'Pergunta 2': life,
+    'Pergunta 3': gender,
+    'Pergunta 4': height,
+    'Pergunta 5': language,
+    'Pergunta 6': planet,
   };
 
   // generate csv and save it

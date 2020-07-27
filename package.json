@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js --ignore __tests__",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js --ignore __tests__",
     "test": "jest"
   },
   "repository": "https://github.com/Matheusafonsouza/Colmeia.git",
